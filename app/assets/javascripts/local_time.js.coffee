@@ -257,7 +257,7 @@ document.addEventListener "DOMContentLoaded", ->
     time = new Date Date.parse datetime
     return if isNaN time
 
-    element[textProperty] = prefix +
+    element.innerHTML = prefix +
       switch local
         when "time"
           element.setAttribute "data-localized", true
