@@ -1,5 +1,5 @@
 module LocalTimeHelper
-  DEFAULT_FORMAT = '%B %e, %Y %l:%M%P'
+  DEFAULT_FORMAT = '%l:%M%P'
 
   def local_time(time, options = {})
     time   = utc_time(time)
