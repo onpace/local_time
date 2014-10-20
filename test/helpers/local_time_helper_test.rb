@@ -114,33 +114,33 @@ class LocalTimeHelperTest < MiniTest::Unit::TestCase
     assert_equal expected, local_time_count_down(@time)
   end
 
-  def test_distance_form_now_seconds
-    expected = distance_form_now(32.seconds.since)
+  def test_distance_from_now_seconds
+    expected = distance_from_now(32.seconds.since)
     assert_equal expected, "32s"
   end
 
-  def test_distance_form_now_minutes
-    expected = distance_form_now(32.minutes.since)
+  def test_distance_from_now_minutes
+    expected = distance_from_now(32.minutes.since)
     assert_equal expected, "32m"
   end
   
-  def test_distance_form_now_hours_minutes
-    expected = distance_form_now(92.minutes.since)
+  def test_distance_from_now_hours_minutes
+    expected = distance_from_now(92.minutes.since)
     assert_equal expected, "1h32m"
   end
 
-  def test_distance_form_now_minutes
-    expected = distance_form_now(120.minutes.since)
+  def test_distance_from_now_minutes
+    expected = distance_from_now(120.minutes.since)
     assert_equal expected, "2h"
   end
 
-  def test_distance_form_now_days_hours
-    expected = distance_form_now(28.hours.since)
+  def test_distance_from_now_days_hours
+    expected = distance_from_now(28.hours.since)
     assert_equal expected, "1d4h"
   end
 
-  def test_distance_form_now_days
-    expected = distance_form_now(80.hours.since)
+  def test_distance_from_now_days
+    expected = distance_from_now(80.hours.since)
     assert_equal expected, "3d"
   end
 

@@ -40,10 +40,10 @@ module LocalTimeHelper
     options[:data] ||= {}
     options[:data].merge! local: 'time-count-down'
 
-    time_tag time, distance_form_now(time), options
+    time_tag time, distance_from_now(time), options
   end
 
-  def distance_form_now(time)
+  def distance_from_now(time)
       difference = time.to_i - Time.now.to_i
       text = ""
       s_in_m, m_in_h, h_in_d = [1.minute.seconds, 1.hour /  1.minute, 1.day / 1.hour]
