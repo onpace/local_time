@@ -35,19 +35,21 @@ module LocalTimeHelper
 
   def local_time_count_down(time, options = {})
     time = utc_time(time)
-    format = time_format(options.delete(:format))
-
+    past_string = options.delete(:past)
     options[:data] ||= {}
     options[:data].merge! local: 'time-count-down'
 
-    time_tag time, distance_from_now(time), options
+    time_tag time, distance_from_now(time, past_string), options
   end
 
-  def distance_from_now(time)
+  def distance_from_now(time, past_string = nil)
       difference = time.to_i - Time.now.to_i
       text = ""
       s_in_m, m_in_h, h_in_d = [1.minute.seconds, 1.hour /  1.minute, 1.day / 1.hour]
 
+      return past_string if past_string && difference < 0
+      sign = difference < 0 ? "-" : ""
+      difference = difference.abs
       seconds    =  difference % s_in_m
       difference = (difference - seconds) / s_in_m
       minutes    =  difference % m_in_h
@@ -60,7 +62,7 @@ module LocalTimeHelper
       text = "#{minutes}m" + text if minutes !=0 && days == 0
       text = "#{hours}h" + text if hours !=0 && days.abs < 2
       text = "#{days}d" + text if days != 0
-      text
+      sign + text
     end
 
   private

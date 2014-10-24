@@ -110,7 +110,7 @@ class LocalTimeHelperTest < MiniTest::Unit::TestCase
 
   def test_local_time_count_down
 
-    expected = %Q(<time data-local="time-count-down" datetime="#{@time_js}">#{(@time.to_date - Time.zone.now.to_date).to_i-1}d</time>)
+    expected = %Q(<time data-local="time-count-down" datetime="#{@time_js}">#{(@time.to_date - Time.zone.now.to_date).to_i}d</time>)
     assert_equal expected, local_time_count_down(@time)
   end
 
@@ -119,14 +119,24 @@ class LocalTimeHelperTest < MiniTest::Unit::TestCase
     assert_equal expected, "32s"
   end
 
-  def test_distance_from_now_minutes
-    expected = distance_from_now(32.minutes.since)
-    assert_equal expected, "32m"
+  def test_distance_from_now_seconds
+    expected = distance_from_now(32.seconds.ago)
+    assert_equal expected, "-32s"
+  end
+
+  def test_distance_from_now_minutes_with_past_string
+    expected = distance_from_now(32.minutes.ago, "digested")
+    assert_equal expected, "digested"
   end
   
   def test_distance_from_now_hours_minutes
     expected = distance_from_now(92.minutes.since)
     assert_equal expected, "1h32m"
+  end
+
+  def test_distance_from_now_hours_minutes
+    expected = distance_from_now(92.minutes.ago)
+    assert_equal expected, "-1h32m"
   end
 
   def test_distance_from_now_minutes
