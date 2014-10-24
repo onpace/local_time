@@ -109,9 +109,13 @@ class LocalTimeHelperTest < MiniTest::Unit::TestCase
   end
 
   def test_local_time_count_down
+    expected = %Q(<time data-local="time-count-down" datetime="#{@time_js}">now</time>)
+    assert_equal expected, local_time_count_down(@time, past: "now")
+  end
 
-    expected = %Q(<time data-local="time-count-down" datetime="#{@time_js}">#{(@time.to_date - Time.zone.now.to_date).to_i}d</time>)
-    assert_equal expected, local_time_count_down(@time)
+  def test_local_time_count_down_with_prefix
+    expected = %Q(<time data-local="time-count-down" data-prefix="RX " datetime="#{@time_js}">RX now</time>)
+    assert_equal expected, local_time_count_down(@time, data: {prefix: "RX "}, past: "now")
   end
 
   def test_distance_from_now_seconds
