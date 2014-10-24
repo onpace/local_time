@@ -39,7 +39,7 @@ module LocalTimeHelper
     options[:data] ||= {}
     options[:data].merge! local: 'time-count-down'
 
-    time_tag time, distance_from_now(time, past_string), options
+    time_tag time, "#{options[:data][:prefix]}#{distance_from_now(time, past_string)}", options
   end
 
   def distance_from_now(time, past_string = nil)
