@@ -39,7 +39,7 @@ module LocalTimeHelper
     options[:data] ||= {}
     options[:data].merge! local: 'time-count-down'
 
-    time_tag time, "#{options[:data][:prefix]}#{distance_from_now(time, past_string)}", options
+    time_tag time, safe_join([options[:data][:prefix],  distance_from_now(time, past_string)]), options
   end
 
   def distance_from_now(time, past_string = nil)
@@ -78,5 +78,9 @@ module LocalTimeHelper
       else
         format.presence || DEFAULT_FORMAT
       end
+    end
+
+    def safe_join(array)
+      array.map { |i| ERB::Util.html_escape(i) }.join("").html_safe
     end
 end
