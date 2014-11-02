@@ -81,6 +81,6 @@ module LocalTimeHelper
     end
 
     def safe_join(array)
-      array.map { |i| ERB::Util.html_escape(i) }.join("").html_safe
+      array.map { |elem| ERB::Util.html_escape(elem) }.join().html_safe
     end
 end
