@@ -6,7 +6,7 @@ require 'minitest/autorun'
 I18n.enforce_available_locales = false
 
 class LocalTimeHelperTest < MiniTest::Unit::TestCase
-  include ActionView::Helpers::DateHelper, ActionView::Helpers::TagHelper
+  include ActionView::Helpers::DateHelper, ActionView::Helpers::TagHelper, ActionView::Helpers::OutputSafetyHelper
   include LocalTimeHelper
 
   def setup
@@ -114,8 +114,8 @@ class LocalTimeHelperTest < MiniTest::Unit::TestCase
   end
 
   def test_local_time_count_down_with_prefix
-    expected = %Q(<time data-local="time-count-down" data-prefix="RX " datetime="#{@time_js}">RX now</time>)
-    assert_equal expected, local_time_count_down(@time, data: {prefix: "RX "}, past: "now")
+    expected = %Q(<time data-local="time-count-down" data-prefix="<b>RX </b>" datetime="#{@time_js}"><b>RX </b>now</time>)
+    assert_equal expected, local_time_count_down(@time, data: {prefix: "<b>RX </b>".html_safe}, past: "now")
   end
 
   def test_distance_from_now_seconds
