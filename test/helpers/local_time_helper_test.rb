@@ -6,7 +6,7 @@ require 'minitest/autorun'
 I18n.enforce_available_locales = false
 
 class LocalTimeHelperTest < MiniTest::Unit::TestCase
-  include ActionView::Helpers::DateHelper, ActionView::Helpers::TagHelper
+  include ActionView::Helpers::DateHelper, ActionView::Helpers::TagHelper, ActionView::Helpers::OutputSafetyHelper
   include LocalTimeHelper
 
   def setup

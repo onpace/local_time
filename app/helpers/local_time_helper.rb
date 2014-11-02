@@ -79,8 +79,4 @@ module LocalTimeHelper
         format.presence || DEFAULT_FORMAT
       end
     end
-
-    def safe_join(array)
-      array.map { |elem| ERB::Util.html_escape(elem) }.join().html_safe
-    end
 end
